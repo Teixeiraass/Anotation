@@ -9,9 +9,10 @@ export default function Filter(){
                     <SelectValue placeholder="Filter"/>
                 </SelectTrigger>
                 <SelectContent>
-                    <Calendar mode="single" className="rounded-md border"/>
+                    <SelectItem value="note">None</SelectItem>
                     <SelectItem value="task">Task</SelectItem>
-                    <SelectItem value="note">Note</SelectItem>
+                    <SelectItem value="none">Note</SelectItem>
+                    <Calendar mode="single" className="rounded-md border"/>
                 </SelectContent>
             </Select>
         </div>

@@ -6,9 +6,7 @@ export default function DialogCard(){
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button>
-                        Open note
-                    </Button>
+                    <Button>Open note</Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
@@ -20,7 +18,7 @@ export default function DialogCard(){
                     </div>
                     <DialogFooter>
                         <Button variant="destructive">Delete</Button>
-                        <Button variant="outline">Edit</Button>
+                        <a href="/edit"><Button variant="outline">Edit</Button></a>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
