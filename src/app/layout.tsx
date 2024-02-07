@@ -2,8 +2,6 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 
 import { cn } from "../lib/utils"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 
 export const fontSans = FontSans({
   subsets: ["latin"],

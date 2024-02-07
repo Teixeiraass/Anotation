@@ -1,21 +1,32 @@
-import { Button } from "../ui/button";
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Dialog } from "../ui/dialog";
 import DialogCard from "./DialogCard";
 
-export default function Cards() {
+interface Cards{
+    id: number,
+    title: string,
+    description: string,
+    content: string
+}
+
+export default function Cards({id ,title, description, content}:Cards) {
     return(
         <>
             <Card className="w-96">
                 <CardHeader>
-                    <CardTitle>Note name</CardTitle>
-                    <CardDescription>Note Description</CardDescription>
+                    <CardTitle>{title}</CardTitle>
+                    <CardDescription className="h-10">{description}</CardDescription>
                 </CardHeader>
-                <CardContent>
-                    <p>Conteudo</p>
+                <CardContent className="h-32">
+                    <p>{content}</p>
                 </CardContent>
                 <CardFooter>
-                    <DialogCard/>
+                    <DialogCard
+                        id={id}
+                        title={title}
+                        description={description}
+                        content={content}
+                    />
                 </CardFooter>
             </Card>
         </>

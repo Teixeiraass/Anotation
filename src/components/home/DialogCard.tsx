@@ -1,7 +1,24 @@
+import api from "@/server/Api";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 
-export default function DialogCard(){
+interface DialogCard{
+    id: number,
+    title: string,
+    description: string,
+    content: string
+}
+
+export default function DialogCard({id ,title, description, content}: DialogCard){
+
+    const handleDelete = () => {
+        api.delete(`/api/notes/${id}`).then((response) => {
+            console.log(response);
+        })
+
+        window.location.reload();
+    }
+
     return(
         <>
             <Dialog>
@@ -10,14 +27,14 @@ export default function DialogCard(){
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Notes</DialogTitle>
-                        <DialogDescription>My notes description</DialogDescription>
+                        <DialogTitle>{title}</DialogTitle>
+                        <DialogDescription>{description}</DialogDescription>
                     </DialogHeader>
                     <div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, quod totam? Voluptatem voluptates excepturi inventore ex tempora odit ab vero accusamus, quas blanditiis, eius iure dolores quisquam explicabo consequuntur dignissimos.z</p>
+                        <p>{content}</p>
                     </div>
                     <DialogFooter>
-                        <Button variant="destructive">Delete</Button>
+                        <Button variant="destructive" onClick={handleDelete}>Delete</Button>
                         <a href="/edit"><Button variant="outline">Edit</Button></a>
                     </DialogFooter>
                 </DialogContent>
