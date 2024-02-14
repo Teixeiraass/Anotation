@@ -1,6 +1,7 @@
 'use client'
 
 import LoadingComponent from "@/components/Loading";
+import Setting from "@/components/Setting";
 import Cards from "@/components/home/Cards";
 import CreateNote from "@/components/home/CreateNote";
 import Filter from "@/components/home/Filter";
@@ -57,6 +58,7 @@ export default function Home() {
           <div className="flex gap-5">
             <Filter/>
             <CreateNote/>
+            <Setting/>
           </div>
         </div>
         <div className="flex flex-wrap w-4/4 h-auto gap-5">

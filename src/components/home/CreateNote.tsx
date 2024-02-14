@@ -30,7 +30,7 @@ export default function CreateNote(){
     };
 
     const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault;
         try{
             api.post("/api/notes", {
                 title: values.title,
@@ -39,11 +39,9 @@ export default function CreateNote(){
                 notesType: values.type
             })
         }catch(e){
-            console.log(e);
+            alert('erro ao criar a nota')
         }
     }
-
-    console.log(values)
 
     return(
         <>

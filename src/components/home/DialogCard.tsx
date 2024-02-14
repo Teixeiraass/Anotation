@@ -13,9 +13,8 @@ export default function DialogCard({id ,title, description, content}: DialogCard
 
     const handleDelete = () => {
         api.delete(`/api/notes/${id}`).then((response) => {
-            console.log(response);
+            
         })
-
         window.location.reload();
     }
 
