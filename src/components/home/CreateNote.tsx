@@ -6,7 +6,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Textarea } from "../ui/textarea";
-import api from "@/server/Api";
+import api from "@/services/Api";
 
 interface FormValues {
     [key: string]: string | number;
@@ -30,7 +30,7 @@ export default function CreateNote(){
     };
 
     const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault;
         try{
             api.post("/api/notes", {
                 title: values.title,
@@ -39,11 +39,9 @@ export default function CreateNote(){
                 notesType: values.type
             })
         }catch(e){
-            console.log(e);
+            alert('erro ao criar a nota')
         }
     }
-
-    console.log(values)
 
     return(
         <>

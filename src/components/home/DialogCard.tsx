@@ -1,4 +1,4 @@
-import api from "@/server/Api";
+import api from "@/services/Api";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 
@@ -13,9 +13,8 @@ export default function DialogCard({id ,title, description, content}: DialogCard
 
     const handleDelete = () => {
         api.delete(`/api/notes/${id}`).then((response) => {
-            console.log(response);
+            
         })
-
         window.location.reload();
     }
 
