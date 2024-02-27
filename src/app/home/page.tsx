@@ -22,13 +22,23 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-      api.get("/api/notes").then((response) => {
-          setList(response.data);
-          setFilteredData(response.data);
-          setLoading(false)
-      }).catch((err) => [
-        console.log('Erro ao carregar o banco de dados!' + err)
-      ])
+      const token = localStorage.getItem('token')
+      if(token){
+        const tokenParts = token.split(".");
+        const decodedToken = JSON.parse(atob(tokenParts[1]));
+
+        const userId = decodedToken.id;
+        const userEmail = decodedToken.email;
+      
+
+        api.get(`/api/notes/usuario/${userEmail}`).then((response) => {
+            setList(response.data);
+            setFilteredData(response.data);
+            setLoading(false)
+        }).catch((err) => [
+          console.log('Erro ao carregar o banco de dados!' + err)
+        ])
+      }
   }, [])
 
   const handleSearchFilter = (filterValues: { title: string }) => {
