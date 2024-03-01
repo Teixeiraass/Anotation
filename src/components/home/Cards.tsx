@@ -6,13 +6,17 @@ interface Cards{
     id: number,
     title: string,
     description: string,
-    content: string
+    content: string,
+    color: string,
+    type: string,
 }
 
-export default function Cards({id ,title, description, content}:Cards) {
+export default function Cards({id ,title, description, content, color, type}:Cards) {
     return(
         <>
-            <Card className="w-96">
+            <Card className="w-96" style={{
+                backgroundColor: color
+            }}>
                 <CardHeader>
                     <CardTitle>{title}</CardTitle>
                     <CardDescription className="h-10">{description}</CardDescription>
@@ -26,6 +30,8 @@ export default function Cards({id ,title, description, content}:Cards) {
                         title={title}
                         description={description}
                         content={content}
+                        type={type}
+                        color={color}
                     />
                 </CardFooter>
             </Card>

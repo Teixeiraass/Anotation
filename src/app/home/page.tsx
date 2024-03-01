@@ -14,6 +14,9 @@ interface notation{
   content: string;
   description: string;
   title: string;
+  color: string,
+  notesType: string,
+  user: Object
 }
 
 export default function Home() {
@@ -77,6 +80,8 @@ export default function Home() {
                         title={item.title}
                         description={item.description}
                         content={item.content}
+                        color={item.color}
+                        type={item.notesType} 
                     />
                 )
             })}
