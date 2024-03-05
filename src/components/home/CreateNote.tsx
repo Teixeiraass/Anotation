@@ -94,7 +94,7 @@ export default function CreateNote(){
                         </div>
                         <DialogFooter>
                             <DialogClose>
-                                <Button variant="ghost">Cancelar</Button>
+                                <Button type="button" variant="ghost">Cancelar</Button>
                             </DialogClose>
                             <Button type="submit">Create</Button>
                         </DialogFooter>

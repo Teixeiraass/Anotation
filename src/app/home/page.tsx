@@ -21,7 +21,8 @@ interface notation{
 
 export default function Home() {
   const [list, setList] = useState<notation[]>([]);
-  const [filteredData, setFilteredData] = useState<notation[]>([]) 
+  const [busca, setBusca] = useState('');
+  const [filterType, setFilterType] = useState('');
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -36,7 +37,6 @@ export default function Home() {
 
         api.get(`/api/notes/usuario/${userEmail}`).then((response) => {
             setList(response.data);
-            setFilteredData(response.data);
             setLoading(false)
         }).catch((err) => [
           console.log('Erro ao carregar o banco de dados!' + err)
@@ -44,14 +44,12 @@ export default function Home() {
       }
   }, [])
 
-  const handleSearchFilter = (filterValues: { title: string }) => {
-    const filteredList = list.filter((item) => {
-      return (
-        item.title.toLowerCase().includes(filterValues.title.toLowerCase())
-      );
-    });
-    setFilteredData(filteredList);
-  };
+  const filteredList = list
+  .filter((value) =>
+      String(value.notesType).includes(filterType)
+  ).filter((value) =>
+    String(value.title).toLowerCase().includes(busca.toLowerCase())
+  );
 
   if(loading){
     return(
@@ -64,15 +62,15 @@ export default function Home() {
     <div className="p-10 max-w-7xl mx-auto space-y-4 w-3/4">
         <h1 className="text-3xl font-bold">Notes</h1>
         <div className="flex items-center justify-between"> 
-          <SearchNote onFilter={handleSearchFilter}/>
+          <SearchNote busca={busca} setBusca={setBusca}/>
           <div className="flex gap-5">
-            <Filter/>
+            <Filter filter={filterType} setFilter={setFilterType}/>
             <CreateNote/>
             <Setting/>
           </div>
         </div>
         <div className="flex flex-wrap w-4/4 h-auto gap-5">
-            {filteredData.map((item, i) => {
+            {filteredList.map((item, i) => {
                 return(
                     <Cards 
                         key={i}

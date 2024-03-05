@@ -7,10 +7,13 @@ import { Label } from "../ui/label";
 import api from "@/services/Api";
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Ban } from "lucide-react";
 
 export default function CardLogin(){
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [errors, setError] = useState(false)
 
     const router = useRouter()
 
@@ -23,11 +26,16 @@ export default function CardLogin(){
                 localStorage.setItem('token', response.data.token)
                 Cookies.set('token', response.data.token);
                 router.push('/home')
+            }).catch((err) => {
+                setError(true)
             })
-        }catch(e){
-            console.log("Email or password wrong", e)
+        }catch(e){  
+            
         }
     }
+
+
+    console.log(errors)
 
 
     return(
@@ -48,8 +56,17 @@ export default function CardLogin(){
                     </div>
                     <div className="flex gap-3">
                         <Button onClick={handleLogin}>Log In</Button>
+                        <Button variant={"link"} >Do you forgot your password?</Button>
                     </div>
-                    <Button variant={"link"} >Do you forgot your password?</Button>
+                    <div className={errors ? 'block' : 'hidden'}>
+                    <Alert variant="destructive">
+                        <Ban className="h-4 w-4" />
+                        <AlertTitle>Something went wrong</AlertTitle>
+                        <AlertDescription>
+                            Wrong password or email!
+                        </AlertDescription>
+                    </Alert>
+                    </div>
                 </div>
             </CardContent>
         </Card>
